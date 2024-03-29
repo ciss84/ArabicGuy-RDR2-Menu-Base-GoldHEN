@@ -316,16 +316,3 @@ bool delayed_key_press(int control) {
 	}
 	return false;
 }
-void AddVehicle(char* option, char* Vehicle, int color, char *Infox = "")
-{
-	AddOption(option, false, color, Infox);
-	if (optionCount == currentOption)
-	 {
-		if(PressX == true)
-		{	
-			CreateVeh = true;
-                        modelVeh = GET_HASH_KEY(Vehicle);
-			PressX = false;						
-		}		
-	}
-}
