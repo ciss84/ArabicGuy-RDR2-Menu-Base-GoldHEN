@@ -12,8 +12,8 @@
 #define GOLDHEN_PATH_ (const char*) GOLDHEN_PATH
 #define BASE_PATH_PATCH (const char*) GOLDHEN_PATH_ "/patches"
 #define BASE_PATH_PATCH_SETTINGS (const char*) BASE_PATH_PATCH "/settings"
-#define PLUGIN_NAME (const char*) "Sheriff"
-#define PLUGIN_DESC (const char*) "Rdr2 Sheriff Menu"
+#define PLUGIN_NAME (const char*) "ArabicGuy"
+#define PLUGIN_DESC (const char*) "Rdr2 ArabicGuy Menu"
 #define PLUGIN_AUTH (const char*) "84Ciss"
 #define PLUGIN_VER 0x129 // 1.29
 
@@ -126,7 +126,7 @@ s32 attr_module_hidden module_start(size_t argc, const void *args) {
     initImports();
     //writeCacheImg();
     sceSysUtilSendSystemNotificationWithText(222, "Plugin Rdr2 1.29\n ");
-    sceSysUtilSendSystemNotificationWithText(222, "Sheriff Menu V1.0 By @84Ciss\n ");   
+    sceSysUtilSendSystemNotificationWithText(222, "ArabicGuy Menu Base\n ");   
     print_proc_info();
     OrbisPthread thread;
     scePthreadCreate(&thread, NULL, my_thread, NULL, "my_thread");
