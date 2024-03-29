@@ -1,6 +1,6 @@
 //Menu Variables
 /**Integer**/
-/*int SelClrR = 255;
+int SelClrR = 255;
 int SelClrG = 255;
 int SelClrB = 0;
 int scalex_ = 0;
@@ -16,24 +16,7 @@ int TITLE_G = 255;
 int TITLE_B = 255;
 int BannerR = 91;
 int BannerG = 8;
-int BannerB = 8;*/
-int SelClrR = 255;
-int SelClrG = 255;
-int SelClrB = 0;
-int scalex_ = 0;
-int scaley_ = 0;
-int SRL_R = 184;
-int SRL_G = 134;
-int SRL_B = 11;
-int BKG_R = 28;//91;
-int BKG_G = 40;//8;
-int BKG_B = 66;//8;
-int TITLE_R = 255;
-int TITLE_G = 255;
-int TITLE_B = 255;
-int BannerR = 224;
-int BannerG = 205;
-int BannerB = 169;
+int BannerB = 8;
 int TitleColor = 1;
 int BannersColor = 1;
 int BackgroundColor =1;
