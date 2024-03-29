@@ -8,12 +8,12 @@
 #include "hooks.h"
 #include "imports.h"
 #include "types.h"
-
+//#include "ImgCache.h"
 #define GOLDHEN_PATH_ (const char*) GOLDHEN_PATH
 #define BASE_PATH_PATCH (const char*) GOLDHEN_PATH_ "/patches"
 #define BASE_PATH_PATCH_SETTINGS (const char*) BASE_PATH_PATCH "/settings"
-#define PLUGIN_NAME (const char*) "Mountain"
-#define PLUGIN_DESC (const char*) "Rdr2 ArabicGuy Menu"
+#define PLUGIN_NAME (const char*) "Sheriff"
+#define PLUGIN_DESC (const char*) "Rdr2 Sheriff Menu"
 #define PLUGIN_AUTH (const char*) "84Ciss"
 #define PLUGIN_VER 0x129 // 1.29
 
@@ -78,7 +78,7 @@ int get_module_info(OrbisKernelModuleInfo moduleInfo, const char* name, uint64_t
 }
 
 void* my_thread(void* args) {
-    u64 isonline_addr = (uint64_t)0x5106F20 + APP_BASE;
+    u64 isonline_addr = (uint64_t)0x5106F20 + APP_BASE; //0x5BA55F0 0x5BA56A0
     WriteJump(isonline_addr, (uint64_t)Hooks::main_Hook);
 
     uint32_t boot_wait = 10;
@@ -124,8 +124,9 @@ s32 attr_module_hidden module_start(size_t argc, const void *args) {
     }
     if (sys_sdk_proc_info(&procInfo) == 0) {
     initImports();
+    //writeCacheImg();
     sceSysUtilSendSystemNotificationWithText(222, "Plugin Rdr2 1.29\n ");
-    sceSysUtilSendSystemNotificationWithText(222, "ArabicGuy Menu Base By @84Ciss\n ");   
+    sceSysUtilSendSystemNotificationWithText(222, "Sheriff Menu V1.0 By @84Ciss\n ");   
     print_proc_info();
     OrbisPthread thread;
     scePthreadCreate(&thread, NULL, my_thread, NULL, "my_thread");

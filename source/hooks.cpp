@@ -35,10 +35,13 @@ bool natives_init;
 #define MAP_ANONYMOUS 0x20
 #define MAP_PRIVATE 0x02
 #define MAP_FIXED 0x10
+//#define PAGE_EXECUTE_READWRITE = 0x40
 
 uint64_t registerNative_hook(int64_t pointer, uint64_t nativeCrossmap, int64_t nativeFuncAddr) {
 if(!natives_init) {
 	nativesTableAddr = (void*)0x270000000;
+	//sprintf(nr_buffer, "nativesTableAddr: %p", nativesTableAddr);
+	// sceSysUtilSendSystemNotificationWithText(222, nr_buffer);
 	natives_init = 1;
 	}
 	twoQwords *p2q;
@@ -46,6 +49,9 @@ if(!natives_init) {
 	 p2q = reinterpret_cast<twoQwords*>(__HASHMAPDATA);
 	 while(p2q->p0) {
 	  if(p2q->p1 == nativeCrossmap) { //crossmap comparation
+	 // sprintf(buffer2, "NativeFunction: 0x%llx", p2q->p1);
+	  
+	
 	
 	*(uint64_t*)((uint64_t)nativesTableAddr + v_nt_counter) = p2q->p0;
 	*(uint32_t*)(((uint64_t)nativesTableAddr + v_nt_counter + 0xC)) = nativeFuncAddr;
@@ -56,6 +62,10 @@ if(!natives_init) {
 	}
 	return registerNative_Stub(pointer, nativeCrossmap, nativeFuncAddr);
 }
+//Hash PLAYER_ZERO = 0xD7114C9;Hash PLAYER_ONE = 0x9B22DBAF;Hash PLAYER_TWO = 0x9B810FA2;Hash SP0_TOTAL_CASH = 0x324C31D;Hash SP1_TOTAL_CASH = 0x44BD6982;Hash SP2_TOTAL_CASH = 0x8D75047D;
+//int GET_PLAYER_NUMBER() {switch (GET_ENTITY_MODEL(PLAYER_PED_ID())){case 225514697: return 0;case -1692214353: return 1;case -1686040670: return 2;}return -1;};
+//int GET_PLAYER_CASH() {int plyCash = -1;switch (GET_PLAYER_NUMBER()){case 0: STAT_GET_INT(SP0_TOTAL_CASH, &plyCash, -1); break;case 1: STAT_GET_INT(SP1_TOTAL_CASH, &plyCash, -1); break;case 2: STAT_GET_INT(SP2_TOTAL_CASH, &plyCash, -1); break;}return plyCash;};
+//bool SET_PLAYER_CASH(int amount) {switch (GET_PLAYER_NUMBER()){case 0: STAT_SET_INT(SP0_TOTAL_CASH, amount, true); break;case 1: STAT_SET_INT(SP1_TOTAL_CASH, amount, true); break;case 2: STAT_SET_INT(SP2_TOTAL_CASH, amount, true); break;default:return false;}return true;};
 
 void monitorButtons() {
 	Static_67 = GET_FRAME_COUNT();
@@ -177,13 +187,15 @@ void looping()
 {
 	if(Invinsibility){ SET_PLAYER_INVINCIBLE(PLAYER_ID(), true); }
 	if(NeverWanted){ CLEAR_PLAYER_WANTED_LEVEL(PLAYER_ID()); }
- 	if(SuperRun) {
-		if (IS_CONTROL_PRESSED(0, FrontendAccept) && NumMenu == Closed) {
+	if(Invisibility) { SET_ENTITY_VISIBLE(PLAYER_PED_ID(), false); } else { SET_ENTITY_VISIBLE(PLAYER_PED_ID(), true); }
+	if(SuperRun) {
+	if (IS_CONTROL_PRESSED(0, FrontendAccept) && NumMenu == Closed) {
 			APPLY_FORCE_TO_ENTITY(PLAYER_PED_ID(), true, 0, 15, 0, 0, 0, 0, false, true, true, true, 0, true);
 			APPLY_FORCE_TO_ENTITY(PLAYER_PED_ID(), true, 0, 0, 0, 0, 0, 0, false, true, true, true, 0, true);
 		}
 	}
 	if(SuperJump){ SET_SUPER_JUMP_THIS_FRAME(PLAYER_ID()); }
+  if(ninjajump){SET_SUPER_JUMP_THIS_FRAME(PLAYER_ID());if (IS_PED_JUMPING(PLAYER_PED_ID())){if (IS_ENTITY_IN_AIR(PLAYER_PED_ID(), 0)){flip -= 10;SET_ENTITY_ROTATION(PLAYER_PED_ID(), flip, 0, GET_ENTITY_HEADING(PLAYER_PED_ID()), 1, 0);}}}
 }
 void menu(void) {
 	drawScroller();
@@ -196,16 +208,22 @@ void menu(void) {
     if(GET() == 2) { ChangeMenu(Credits); }
 	}
 	else if(NumMenu == PlayerMenu) {
-		AddTitle("Player");
+		AddTitle("Option Player");
 		CheckBox("GodMode", Invinsibility, 1, "");
 	  CheckBox("Never Wanted", NeverWanted, 0, "");
 		CheckBox("Super Run", SuperRun, 1, "Press X to use super run.");
-		CheckBox("Super Jump", SuperJump, 0, "");
+		CheckBox("Super Jump", SuperJump, 0, "Press square to use super Jump.");
+		CheckBox("Ninja Jump", ninjajump, 1, "Press square to use super Jump.");		
+		CheckBox("Invisibility", Invisibility, 1, "");
+		CheckBox("Freeze Position", FreezePos, 0, "");
 		if(GET() == 1) { Invinsibility = !Invinsibility; }
 		if(GET() == 2) { NeverWanted = !NeverWanted; }			
 		if(GET() == 3) { SuperRun = !SuperRun; }
-		if(GET() == 4) { SuperJump = !SuperJump; }	
-	}	
+		if(GET() == 4) { SuperJump = !SuperJump; }
+		if(GET() == 5) { ninjajump = !ninjajump; }		
+		if(GET() == 6) { Invisibility = !Invisibility; }			
+		if(GET() == 7) { FreezePos =! FreezePos; FREEZE_ENTITY_POSITION(PLAYER_PED_ID(), FreezePos); }
+	}
 	else if(NumMenu == Credits) {
 		AddTitle("Credits");
 		addOption("84Ciss", 1, "");
