@@ -1,4 +1,4 @@
-# ArabicGuy-RDR2-Menu-Base-GoldHEN
+# ArabicGuy-RDR2-Menu-Base-GoldHEN v1.29
 
 https://github.com/GoldHEN/GoldHEN_Plugins_Repository
 
