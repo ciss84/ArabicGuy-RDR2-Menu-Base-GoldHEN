@@ -125,8 +125,8 @@ s32 attr_module_hidden module_start(size_t argc, const void *args) {
     if (sys_sdk_proc_info(&procInfo) == 0) {
     initImports();
     //writeCacheImg();
-    sceSysUtilSendSystemNotificationWithText(222, "Plugin Rdr2 1.29 ArabicGuy\n ");
-    sceSysUtilSendSystemNotificationWithText(222, "Menu V1.0 By @84Ciss\n ");   
+    sceSysUtilSendSystemNotificationWithText(222, "Plugin Rdr2 1.29\n ");
+    sceSysUtilSendSystemNotificationWithText(222, "ArabicGuy Menu V1.0 By @84Ciss\n ");   
     print_proc_info();
     OrbisPthread thread;
     scePthreadCreate(&thread, NULL, my_thread, NULL, "my_thread");
