@@ -219,7 +219,7 @@ void menu(void) {
 	drawScroller();
 	optionCount = 0;
 	if(NumMenu == Main_Menu) {
-		AddTitle("Sheriff Menu v1.0");
+		AddTitle("ArabicGuy Menu v1.0");
 		addOption("Option Player",  1, "");
 		//addOption("Spawn Horse", 0, "");
 		//addOption("Change Weather", 1, "");	
@@ -235,7 +235,7 @@ void menu(void) {
 	  CheckBox("Never Wanted", NeverWanted, 0, "");
 		CheckBox("Super Run", SuperRun, 1, "Press X to use super run.");
 		CheckBox("Super Jump", SuperJump, 0, "Press square to use super Jump.");
-		CheckBox("Ninja Jump", ninjajump, 1, "Press square to use super Jump.");
+		CheckBox("Ninja Jump", ninjajump, 1, "Press square to use super Jump.");		
 		CheckBox("Invisibility", Invisibility, 1, "");
 		CheckBox("Freeze Position", FreezePos, 0, "");
 		if(GET() == 1) { Invinsibility = !Invinsibility; }
