@@ -190,14 +190,10 @@ void menu(void) {
 	optionCount = 0;
 	if(NumMenu == Main_Menu) {
 		AddTitle("ArabicGuy");
-		addOption("Option Player",  1, "");
-		addOption("Spawn Horse", 0, "");
-		addOption("Change Weather", 1, "");	
+		addOption("Option Player",  1, "");	
 		addOption("Credits",  0, "");
     if(GET() == 1) { ChangeMenu(PlayerMenu); }
-    if(GET() == 2) { ChangeMenu(Vehicles); }
-    if(GET() == 3) { ChangeMenu(Weather_Time); }
-    if(GET() == 4) { ChangeMenu(Credits); }
+    if(GET() == 2) { ChangeMenu(Credits); }
 	}
 	else if(NumMenu == PlayerMenu) {
 		AddTitle("Player");
