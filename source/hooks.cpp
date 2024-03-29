@@ -190,7 +190,7 @@ void menu(void) {
 	optionCount = 0;
 	if(NumMenu == Main_Menu) {
 		AddTitle("ArabicGuy");
-		addOption("Option Player",  1, "");	
+		addOption("Option Player",  1, "");
 		addOption("Credits",  0, "");
     if(GET() == 1) { ChangeMenu(PlayerMenu); }
     if(GET() == 2) { ChangeMenu(Credits); }
