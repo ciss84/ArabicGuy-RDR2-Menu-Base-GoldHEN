@@ -1,14 +1,14 @@
+#include <Common.h>
+#include "plugin_common.h"
 void givePedWeapon(Ped ped, Hash weapon) {
-    _GIVE_WEAPON_TO_PED_2(ped, weapon, 100, true, true, 0, false, 0.5f, 1.0f, 752097756, true, 0.0f, false);
+   // _GIVE_WEAPON_TO_PED_2(ped, weapon, 100, true, true, 0, false, 0.5f, 1.0f, 752097756, true, 0.0f, false);
 }
 void playSound(char* sound, char* sound_dict) {
-	PLAY_SOUND_FRONTEND(sound, "PAUSE_MENU_SOUNDSET", 1, 10);
+	//PLAY_SOUND_FRONTEND(sound, "PAUSE_MENU_SOUNDSET", 1, 10);
 }
 void print(const char* text, int nothing = NULL) {
-	const char* literalString = CREATE_STRING(10, "LITERAL_STRING", text);
-	_LOG_SET_CACHED_OBJECTIVE(literalString);
-	_LOG_PRINT_CACHED_OBJECTIVE();
-	_LOG_CLEAR_CACHED_OBJECTIVE();
+	//const char* literalString = CREATE_STRING(10, "LITERAL_STRING", text);
+	
 }
 bool Match(const unsigned char* pData, const unsigned char* bMask, const char* szMask)
 {

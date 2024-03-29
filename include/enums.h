@@ -18,8 +18,6 @@ typedef enum Subs
 	Closed,
 	Main_Menu,
 	PlayerMenu,
-  Vehicles,
-  Weather_Time,
 	Credits,
 	
 } Subs;

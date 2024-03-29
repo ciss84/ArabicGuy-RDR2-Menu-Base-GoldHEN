@@ -85,63 +85,6 @@ void AddOption(char *option, bool Normal, int color, char* Infox) {
 void addOption(char* option, int color, char* Infox) {
 	AddOption(option, false, color, Infox);
 }
-float SPOZ = 0.87;
-void AddOption2(char *option, bool Normal, char* spritedict, char* sprite, int color, char* Infox = NULL) {
-  optionCount++;	
-	if (currentOption == optionCount)
-	InfoText = Infox;
-	SelectedItem = false;
-	if (optionCount == currentOption) {
-		SelectedItem = true;
-	}
-	if(Normal) {		
-		if (currentOption <= maxOptions && optionCount <= maxOptions) {
-			if(color == 0) {
-				DRAW_RECT(Menu_X, (optionCount * 0.030f + 0.1410f), CenterDraw, 0.0285, BKG_R, BKG_G, BKG_B, 189, 0, 0);
-			}
-			if(color == 1) {
-				DRAW_RECT(Menu_X, (optionCount * 0.030f + 0.1410f), CenterDraw, 0.0285, 0, 0, 0, 150, 0, 0);
-			}
-			DRAW_TEXT_OPTION(option, OptionsFont, Cunt - 0.015 , (optionCount * 0.030f + 0.127f), 0.35000000, 0.35000000, 255, false, false, 0, 0, 0);
-      DrawSprite(spritedict, sprite, SPOZ, (optionCount * 0.030f + 0.1413f), 0.02, 0.03, 0, 255, 255, 255, 255);
-		}
-		else if ((optionCount > (currentOption - maxOptions)) && optionCount <= currentOption) {
-			if(color == 0) {
-				DRAW_RECT(Menu_X, ((optionCount - (currentOption - maxOptions)) * 0.030f + 0.1410f), CenterDraw, 0.0285, BKG_R, BKG_G, BKG_B, 189, 0, 0);
-			}
-			if(color == 1) {
-				DRAW_RECT(Menu_X,  ((optionCount - (currentOption - maxOptions)) * 0.030f + 0.1410f), CenterDraw, 0.0285,0, 0, 0, 150, 0, 0);
-			}
-			DRAW_TEXT_OPTION(option, OptionsFont, Cunt - 0.015, ((optionCount - (currentOption - maxOptions)) * 0.030f + 0.127f), 0.35000000, 0.35000000, 255, false, false, 0, 0, 0);
-      DrawSprite(spritedict, sprite, SPOZ, ((optionCount - (currentOption - maxOptions))* 0.030f + 0.1413f), 0.02, 0.03, 0, 255, 255, 255, 255); 
-		}
-	}
-	else {
-		if (currentOption <= maxOptions && optionCount <= maxOptions) {
-			if(color == 0) {
-				DRAW_RECT(Menu_X, (optionCount * 0.030f + 0.1410f), CenterDraw, 0.0285, BKG_R, BKG_G, BKG_B, 189, 0, 0);
-			}
-			if(color == 1) {
-				DRAW_RECT(Menu_X, (optionCount * 0.030f + 0.1410f), CenterDraw, 0.0285, 0, 0, 0, 150, 0, 0);
-			}
-			DRAW_TEXT_OPTION(option, OptionsFont, Cunt, (optionCount * 0.030f + 0.127f), 0.35000000, 0.35000000, 255, false, false, 0, 0, 0);
-      DrawSprite(spritedict, sprite, SPOZ, (optionCount * 0.030f + 0.1413f), 0.02, 0.03, 0, 255, 255, 255, 255);
-		}
-		else if ((optionCount > (currentOption - maxOptions)) && optionCount <= currentOption) {
-			if(color == 0) {
-				DRAW_RECT(Menu_X, ((optionCount - (currentOption - maxOptions)) * 0.030f + 0.1410f), CenterDraw, 0.0285, BKG_R, BKG_G, BKG_B, 189, 0, 0);
-			}
-			if(color == 1) {
-				DRAW_RECT(Menu_X, ((optionCount - (currentOption - maxOptions)) * 0.030f + 0.1410f), CenterDraw, 0.0285, 0, 0, 0, 150, 0, 0);
-			}
-			DRAW_TEXT_OPTION(option, OptionsFont, Cunt, ((optionCount - (currentOption - maxOptions)) * 0.030f + 0.127f), 0.35000000, 0.35000000, 255, false, false, 0, 0, 0);
-      DrawSprite(spritedict, sprite, SPOZ, ((optionCount - (currentOption - maxOptions)) * 0.030f + 0.1413f), 0.02, 0.03, 0, 255, 255, 255, 255);
-		}
-	}
-}
-void addOption2(char* option, char* spritedict, char* sprite, int color, char* Infox) {
-	AddOption2(option, false, spritedict, sprite, color, Infox);
-}
 void CheckBox(char* text, bool toggle, int color, char* Infox = "") {
 	char buf[255];
 	AddOption(text, false, color, Infox);
@@ -162,31 +105,6 @@ void CheckBox(char* text, bool toggle, int color, char* Infox = "") {
 		}
 	}
 }
-/*float ONOFF = 0.87f;
-void CheckBox1(char *option, bool b00l, char* spritedict, char* sprite, int color, char *Infox = "")
-{
-        AddOption(option, false, color, Infox);
-  	if(currentOption == optionCount){
- 		b00l = !b00l;
- 	}
- 	if (b00l){
-		DrawSprite("commonmenu", "common_medal", ONOFF, (optionCount * 0.030f + 0.1413f), 0.02, 0.03, 0,  0, 255, 0, 255);
-        }else{
-		DrawSprite("commonmenu", "common_medal", ONOFF, (optionCount * 0.030f + 0.1413f), 0.02, 0.03, 0, 255, 0, 0, 255);
-        }
-}
-void CheckBox2(char *option, bool *b00l, char* spritedict, char* sprite, int color, char *Infox = "")
-{
-        AddOption(option, false, color, Infox);
-  	if(currentOption == optionCount){
- 		*b00l = !*b00l;
- 	}
- 	if (*b00l){
-		DrawSprite("commonmenu", "common_medal", ONOFF, (optionCount * 0.030f + 0.1413f), 0.02, 0.03, 0,  0, 255, 0, 255);
-        }else{
-		DrawSprite("commonmenu", "common_medal", ONOFF, (optionCount * 0.030f + 0.1413f), 0.02, 0.03, 0, 255, 0, 0, 255);
-        }
-}*/
 void IntOption(char *option, int *var, int min, int max, bool fast, int color, char* Infox) {
 	AddOption(option, false, color, Infox);
 	if (currentOption <= maxOptions && optionCount <= maxOptions) {
@@ -315,17 +233,4 @@ bool delayed_key_press(int control) {
 		return true;
 	}
 	return false;
-}
-void AddVehicle(char* option, char* Vehicle, int color, char *Infox = "")
-{
-	AddOption(option, false, color, Infox);
-	if (optionCount == currentOption)
-	 {
-		if(PressX == true)
-		{	
-			CreateVeh = true;
-                        modelVeh = GET_HASH_KEY(Vehicle);
-			PressX = false;						
-		}		
-	}
 }

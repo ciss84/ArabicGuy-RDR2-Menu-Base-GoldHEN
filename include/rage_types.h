@@ -43,19 +43,6 @@ typedef int ColourIndex;
 typedef int Sphere;
 typedef int ScrHandle;
 
-struct Vect3
-{
-	float x;
-	float unk1001;
-	float y;
-	float unk1002;
-	float z;
-	float c;
-	float d;
-	float e;
-	float f;
-};
-
 typedef struct {
 	float x, y;
 } vector2;
@@ -67,7 +54,3 @@ typedef struct {
 typedef struct {
 	float x, y, z, w;
 } vector4;
-
-typedef struct {
-	int r, g, b, a;
-} Color;
