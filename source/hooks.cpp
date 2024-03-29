@@ -196,15 +196,37 @@ void looping()
 	}
 	if(SuperJump){ SET_SUPER_JUMP_THIS_FRAME(PLAYER_ID()); }
   if(ninjajump){SET_SUPER_JUMP_THIS_FRAME(PLAYER_ID());if (IS_PED_JUMPING(PLAYER_PED_ID())){if (IS_ENTITY_IN_AIR(PLAYER_PED_ID(), 0)){flip -= 10;SET_ENTITY_ROTATION(PLAYER_PED_ID(), flip, 0, GET_ENTITY_HEADING(PLAYER_PED_ID()), 1, 0);}}}
+	/*if(CreateVeh) { 
+    int ped = PLAYER_PED_ID();
+    if(!DOES_ENTITY_EXIST(modelVeh)){
+    REQUEST_MODEL(modelVeh, true);
+	  if(HAS_MODEL_LOADED(modelVeh));
+    {	
+    vector3 pos = GET_ENTITY_COORDS(ped, true, 0);
+    int myHorse = CREATE_PED(modelVeh, pos.x+5, pos.y+5, pos.z, 0.0, true, true, true, true, 0, 0);
+    SET_PED_VISIBLE(myHorse, true);
+    SET_PED_AS_GROUP_MEMBER(myHorse, 0);
+    SET_MODEL_AS_NO_LONGER_NEEDED(modelVeh);
+    _0xD3A7B003ED343FD9(myHorse, 0x20359E53,true,true,true);
+    _0xD3A7B003ED343FD9(myHorse, 0x508B80B9,true,true,true);
+    _0xD3A7B003ED343FD9(myHorse, 0xF0C30271,true,true,true);
+    _0xD3A7B003ED343FD9(myHorse, 0x12F0DF9F,true,true,true);
+    _0xD3A7B003ED343FD9(myHorse, 0x67AF7302,true,true,true);
+    _BLIP_ADD_FOR_ENTITY(-1230993421, myHorse);
+    CreateVeh = false; }}}*/
 }
 void menu(void) {
 	drawScroller();
 	optionCount = 0;
 	if(NumMenu == Main_Menu) {
-		AddTitle("ArabicGuy");
+		AddTitle("Sheriff Menu v1.0");
 		addOption("Option Player",  1, "");
+		//addOption("Spawn Horse", 0, "");
+		//addOption("Change Weather", 1, "");	
 		addOption("Credits",  0, "");
     if(GET() == 1) { ChangeMenu(PlayerMenu); }
+    //if(GET() == 2) { ChangeMenu(Vehicles); }
+    //if(GET() == 3) { ChangeMenu(Weather_Time); }
     if(GET() == 2) { ChangeMenu(Credits); }
 	}
 	else if(NumMenu == PlayerMenu) {
@@ -213,7 +235,7 @@ void menu(void) {
 	  CheckBox("Never Wanted", NeverWanted, 0, "");
 		CheckBox("Super Run", SuperRun, 1, "Press X to use super run.");
 		CheckBox("Super Jump", SuperJump, 0, "Press square to use super Jump.");
-		CheckBox("Ninja Jump", ninjajump, 1, "Press square to use super Jump.");		
+		CheckBox("Ninja Jump", ninjajump, 1, "Press square to use super Jump.");
 		CheckBox("Invisibility", Invisibility, 1, "");
 		CheckBox("Freeze Position", FreezePos, 0, "");
 		if(GET() == 1) { Invinsibility = !Invinsibility; }
@@ -224,6 +246,40 @@ void menu(void) {
 		if(GET() == 6) { Invisibility = !Invisibility; }			
 		if(GET() == 7) { FreezePos =! FreezePos; FREEZE_ENTITY_POSITION(PLAYER_PED_ID(), FreezePos); }
 	}
+	/*else if(NumMenu == Vehicles) {
+		 AddTitle("Spawn Horse");
+	   AddVehicle("Black Rabicano", "a_c_Horse_TennesseeWalker_BlackRabicano", 1, "");
+	   AddVehicle("Dappled Buckskin", "a_c_horse_norfolkroadster_dappledbuckskin", 1, "");
+	   AddVehicle("Piebal Droan", "a_c_horse_norfolkroadster_piebaldroan", 1, "");//A_C_HORSE_ARABIAN_WHITE
+	}
+  else if(NumMenu == Weather_Time)
+  {
+    AddTitle("Weather Selector");
+	  addOption("Clear", 0, " ");
+	  addOption("Extra Sunny", 1, " ");
+	  addOption("Cloudy", 0, " ");
+	  addOption("Raining", 1, " ");
+	  addOption("Thunder", 0, " ");
+	  addOption("ThunderStorm", 1, " ");
+	  addOption("Hurricane", 0, " ");
+	  addOption("Foggy", 1, " ");
+	  addOption("Snow Light", 0, " ");
+	  addOption("Blizzard", 1, " ");
+	  addOption("Snow", 0, " ");  
+	  addOption("Ground Blizzard", 1, " "); 
+	  if(GET() == 1) { SET_WEATHER_TYPE_2(GET_HASH_KEY("DRIZZLE"), 11, 0, 0, false);}
+	  if(GET() == 2) { SET_WEATHER_TYPE_2(GET_HASH_KEY("CLOUDS"), 11, 0, 0, false);}
+	  if(GET() == 3) { SET_WEATHER_TYPE_2(GET_HASH_KEY("CLOUDS"), 11, 0, 0, false);}
+	  if(GET() == 4) { SET_WEATHER_TYPE_2(GET_HASH_KEY("RAIN"), 11, 0, 0, false);}
+	  if(GET() == 5) { SET_WEATHER_TYPE_2(GET_HASH_KEY("THUNDER"), 11, 0, 0, false);}
+	  if(GET() == 6) { SET_WEATHER_TYPE_2(GET_HASH_KEY("THUNDERSTORM"), 11, 0, 0, false);}
+	  if(GET() == 7) { SET_WEATHER_TYPE_2(GET_HASH_KEY("HURRICANE"), 11, 0, 0, false);}
+	  if(GET() == 8) { SET_WEATHER_TYPE_2(GET_HASH_KEY("FOG"), 11, 0, 0, false);}
+	  if(GET() == 9) { SET_WEATHER_TYPE_2(GET_HASH_KEY("SNOWLIGHT"), 11, 0, 0, false);}	  
+	  if(GET() == 10) { SET_WEATHER_TYPE_2(GET_HASH_KEY("BLIZZARD"), 11, 0, 0, false);}
+	  if(GET() == 11) { SET_WEATHER_TYPE_2(GET_HASH_KEY("GROUNDBLIZZARD"), 11, 0, 0, false);}
+	  if(GET() == 12) { SET_WEATHER_TYPE_2(GET_HASH_KEY("SNOW"), 11, 0, 0, false);}	  		    	
+  }*/
 	else if(NumMenu == Credits) {
 		AddTitle("Credits");
 		addOption("84Ciss", 1, "");
