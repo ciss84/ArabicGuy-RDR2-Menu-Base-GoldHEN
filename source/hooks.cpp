@@ -196,6 +196,10 @@ void looping()
 	}
 	if(SuperJump){ SET_SUPER_JUMP_THIS_FRAME(PLAYER_ID()); }
   if(ninjajump){SET_SUPER_JUMP_THIS_FRAME(PLAYER_ID());if (IS_PED_JUMPING(PLAYER_PED_ID())){if (IS_ENTITY_IN_AIR(PLAYER_PED_ID(), 0)){flip -= 10;SET_ENTITY_ROTATION(PLAYER_PED_ID(), flip, 0, GET_ENTITY_HEADING(PLAYER_PED_ID()), 1, 0);}}}
+	if(Forcefield) {
+		vector3 Coords = GET_ENTITY_COORDS(PLAYER_PED_ID(), false, false);
+		ADD_EXPLOSION(Coords.x, Coords.y, Coords.z, 29, 20.0, false, true, 0.0f);
+	}
 	/*if(CreateVeh) { 
     int ped = PLAYER_PED_ID();
     if(!DOES_ENTITY_EXIST(modelVeh)){
@@ -236,6 +240,7 @@ void menu(void) {
 		CheckBox("Super Run", SuperRun, 1, "Press X to use super run.");
 		CheckBox("Super Jump", SuperJump, 0, "Press square to use super Jump.");
 		CheckBox("Ninja Jump", ninjajump, 1, "Press square to use super Jump.");		
+		CheckBox("Forcefield", Forcefield, 0, "");
 		CheckBox("Invisibility", Invisibility, 1, "");
 		CheckBox("Freeze Position", FreezePos, 0, "");
 		if(GET() == 1) { Invinsibility = !Invinsibility; }
@@ -243,8 +248,9 @@ void menu(void) {
 		if(GET() == 3) { SuperRun = !SuperRun; }
 		if(GET() == 4) { SuperJump = !SuperJump; }
 		if(GET() == 5) { ninjajump = !ninjajump; }		
-		if(GET() == 6) { Invisibility = !Invisibility; }			
-		if(GET() == 7) { FreezePos =! FreezePos; FREEZE_ENTITY_POSITION(PLAYER_PED_ID(), FreezePos); }
+		if(GET() == 6) { Forcefield = !Forcefield; }
+		if(GET() == 7) { Invisibility = !Invisibility; }			
+		if(GET() == 8) { FreezePos =! FreezePos; FREEZE_ENTITY_POSITION(PLAYER_PED_ID(), FreezePos); }
 	}
 	/*else if(NumMenu == Vehicles) {
 		 AddTitle("Spawn Horse");
